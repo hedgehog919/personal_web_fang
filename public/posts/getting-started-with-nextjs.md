@@ -11,7 +11,7 @@ Next.js 相比純 React 有幾個優勢：
 - **內建優化**：圖片、字型自動優化
 
 ## 環境設置
-![專案結構圖](/posts/images/nextjs-structure.png)
+![專案結構圖](../../posts/images/nextjs-structure.png)
 
 首先，使用 create-next-app 建立專案：
 

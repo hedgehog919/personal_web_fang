@@ -1,5 +1,4 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Profile() {
   return (
@@ -9,13 +8,15 @@ export default function Profile() {
         <div className="relative w-40 h-40">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl blur-3xl opacity-30 animate-pulse" />
           <div className="relative w-40 h-40 rounded-2xl overflow-hidden">
-            <Image
-              src="/images/avatar.png"
+            {/*
+              GitHub Pages 使用子路徑（/personal_web_fang/），避免用 /images/... 這種根路徑。
+              這裡改用相對路徑，會自動變成 /personal_web_fang/images/avatar.png
+            */}
+            <img
+              src="./images/avatar.png"
               alt="Profile Picture"
-              fill
-              sizes="160px"
-              className="object-cover"
-              priority
+              className="object-cover w-full h-full"
+              loading="eager"
             />
           </div>
         </div>

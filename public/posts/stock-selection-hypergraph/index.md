@@ -22,7 +22,7 @@ Link: [論文原文](https://ojs.aaai.org/index.php/AAAI/article/view/16127)、[
 
 ### STHAN-SR
 模型首先利用 LSTM 捕捉各股票的歷史價格序列特徵，並結合 Hawkes 注意力機制動態調整時間權重，以模擬資訊影響力隨時間衰減的特性，生成的序列嵌入向量將作為初始節點特徵輸入超圖注意力卷積層，透過超圖卷積更新節點嵌入向量，讓節點涵蓋與其關聯的股票的序列資訊，模型也得以學習股票間複雜的高階關聯性及其重要程度，最終產出每支股票的預測報酬率。
-![image](/posts/stock-selection-hypergraph/sthan-sr.png)
+![image](../../posts/stock-selection-hypergraph/sthan-sr.png)
 
 ### 序列嵌入(Sequential Embedding)
 #### 單一時間步嵌入(LSTM/GRU)
@@ -147,7 +147,7 @@ with torch.no_grad():  # 不計算梯度
 #### 定義超圖（Hypergraph）
 作為超圖的基礎連接單位超邊（hyperedge），可以同時連接任意數量的節點，論文依據 GICS（全球行業分類標準）來定義產業超邊，所有屬於同一產業的股票會被一條超邊連接起來，以下圖的醫療行業為例，就包括股票 Vertex、Moderna、Regeneron，這些被同一超邊連接的股票會**呈現同步的價格趨勢**，如之前提到的 COVID 案例。
 
-![image](/posts/stock-selection-hypergraph/hypergraph-structure.png)
+![image](../../posts/stock-selection-hypergraph/hypergraph-structure.png)
 
 而這個超邊被定義在關聯矩陣，如(公式4):
 
@@ -205,7 +205,7 @@ $$\mathbf{X}^{(l+1)} = \bigoplus_{k=1}^{K} \text{ELU}\left(\mathbf{D}_v^{-\frac{
 - $\bigoplus$：多頭結果合併操作（concat 或平均）
 - $\text{ELU}$：非線性激活函數
 
-![image](/posts/stock-selection-hypergraph/hypergraph-conv.png)
+![image](../../posts/stock-selection-hypergraph/hypergraph-conv.png)
 節點更新分成三個階段:
 **第一階段：節點 → 超邊**
 
@@ -375,16 +375,16 @@ def get_batch(self, offset=None):
 # 研究結果
 ### Hawkes 能捕捉近期的趨勢變化
 Hawkes 注意力能準確捕捉**近期的趨勢變化**（窗口末端的上漲），而一般時間注意力 Temporal Attention 權重分散，反映整體趨勢但錯失近期轉折，在預測成效，Hawkes 預測更接近實際值。
-![image](/posts/stock-selection-hypergraph/hawkes-attention.png)
+![image](../../posts/stock-selection-hypergraph/hawkes-attention.png)
 
 ### 模型表現顯著優秀
 在三個市場（NASDAQ、NYSE、東京證交所）超過六年的數據測試中，STHAN-SR 在所有評估指標上都顯著優於基準方法（p < 0.01）。
-![image](/posts/stock-selection-hypergraph/performance-results.png)
+![image](../../posts/stock-selection-hypergraph/performance-results.png)
 
 ### 超圖優於普通圖
 實驗按照度數由小到大依序移除超圖邊，排名能力明顯下降，而當超圖邊被分解為成對關係時，排名能力也明顯下降。
-![image](/posts/stock-selection-hypergraph/hypergraph-vs-graph.png)
+![image](../../posts/stock-selection-hypergraph/hypergraph-vs-graph.png)
 
 ### 各模組相輔相成
 消融實驗顯示，時序（Hawkes 注意力）和空間（超圖卷積 + 注意力）模組的結合，比單獨使用任一模組都能更好地捕捉股市中的時空相關性。
-![image](/posts/stock-selection-hypergraph/ablation-study.png)
+![image](../../posts/stock-selection-hypergraph/ablation-study.png)

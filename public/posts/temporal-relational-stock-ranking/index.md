@@ -19,7 +19,7 @@ Link: [論文原文](https://dl.acm.org/doi/pdf/10.1145/3309547)、[論文程式
 
 # 方法論
 為解決這些問題，論文提出了 Relational Stock Ranking (RSR) 關聯性股票排名框架，並設計時間圖卷積模組 Temporal Graph Convolution (TGC) 來動態捕捉股票間的關係，並將股票預測重新定義為排序任務。
-![image](/posts/temporal-relational-stock-ranking/framework.png)
+![image](../../posts/temporal-relational-stock-ranking/framework.png)
 這個框架首先將每支股票的歷史價格序列輸入 LSTM 網路，學習出代表該股票時序特徵的序列嵌入向量，接著以產業關係、Wiki 公司關係定義股票關聯圖，時間圖卷積模組就會以此關聯圖更新節點嵌入向量，使得股票包含關聯股票的時序資訊，最後，將序列嵌入向量與節點嵌入向量串接後，輸入全連接層產生每支股票的排序分數，依此排序推薦投資標的。
 
 ### 序列嵌入(Sequential Embedding)
@@ -279,22 +279,22 @@ loss = reg_loss + tf.cast(self.parameters['alpha'], tf.float32) * rank_loss  # (
 
 ### 排序方法優於迴歸方法
 Rank_LSTM 在兩個市場的 IRR 上都有顯著提升，在 NASDAQ 達到 0.68、在 NYSE 達到 0.56，相較於基準方法有超過 14% 的改善，這驗證了將股票預測問題重新定義為排序任務的有效性，只有 MRR 指標在 NYSE 市場的表現弱於 SFM，這是因為結合逐點與成對損失會在預測絕對值準確度與相對排序準確度之間產生權衡。
-![image](/posts/temporal-relational-stock-ranking/table5.png)
-![image](/posts/temporal-relational-stock-ranking/figure5.png)
+![image](../../posts/temporal-relational-stock-ranking/table5.png)
+![image](../../posts/temporal-relational-stock-ranking/figure5.png)
 ### 股票關係增強預測效果
 在 NYSE 市場上，所有考慮股票關係的方法都優於不考慮關係的 Rank_LSTM，特別是 RSR_I 在使用產業關係時達到 1.06 的 IRR，使用 Wiki 關係時達到 0.79 的 IRR，RSR 方法優於 GCN 與 GBR，因為 TGC 能夠動態捕捉關係強度隨時間的變化，而傳統方法使用固定的圖結構，另外，產業關係在 NASDAQ 上的效果不如預期，這可能是因為 NASDAQ 市場較為波動，受短期因素主導，而產業關係反映的是長期相關性。
 * MSE (Mean Square Error, 均方誤差)：衡量預測回報率與真實回報率之間數值差距的指標，數值越小代表預測的絕對值越精準 。
 * MRR (Mean Reciprocal Rank, 平均倒數排名)：衡量模型將表現最好的股票排在清單首位的準確度，數值越接近 1 代表最強勢股被排在越前面 。
 * IRR (Internal Rate of Return, 內部收益率)：衡量根據模型預測進行投資的實際獲利能力，是評估模型交易策略表現最關鍵的收益指標 。
-![image](/posts/temporal-relational-stock-ranking/table6.png)
-![image](/posts/temporal-relational-stock-ranking/figure6.png)
-![image](/posts/temporal-relational-stock-ranking/table7.png)
-![image](/posts/temporal-relational-stock-ranking/figure7.png)
+![image](../../posts/temporal-relational-stock-ranking/table6.png)
+![image](../../posts/temporal-relational-stock-ranking/figure6.png)
+![image](../../posts/temporal-relational-stock-ranking/table7.png)
+![image](../../posts/temporal-relational-stock-ranking/figure7.png)
 
 ### Top1 回測策略的表現理想
 論文評估了 Top1、Top5、Top10 三種回測策略，在大多數情況下，Top1 策略的報酬率最高，Top10 最低，這符合預期——當排序準確時，選擇預期報酬最高的股票應能獲得最高實際報酬，與市場指數相比，RSR_I 的 Top1 策略在 NASDAQ 達到 1.19、NYSE 達到 1.06，顯著優於被動投資，然而，與理想策略（事後選出最佳股票）相比仍有差距，顯示股票預測方法仍有很大的改進空間。
-![image](/posts/temporal-relational-stock-ranking/figure8.png)
-![image](/posts/temporal-relational-stock-ranking/table10.png)
+![image](../../posts/temporal-relational-stock-ranking/figure8.png)
+![image](../../posts/temporal-relational-stock-ranking/table10.png)
 
 
 
