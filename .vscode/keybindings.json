@@ -1,0 +1,36 @@
+[ // 快捷鍵設定
+    { // 顯示/隱藏檔案總管 (CTRL + B)
+        "key": "ctrl+b",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    // 分割編輯器
+    { // 垂直分割 (CTRL + \ 鍵)
+        "key": "ctrl+\\",
+        "command": "-workbench.action.splitEditor",
+        "when": "editorTextFocus"
+    },
+    { // 水平分割 (CTRL + K + CTRL + \ 鍵)
+        "key": "ctrl+k ctrl+\\",
+        "command": "-workbench.action.splitEditorOrthogonal",
+        "when": "editorTextFocus"
+    },
+    // 移動編輯器
+    { // 向右移動 (CTRL + TAB + 方向鍵)
+        "key": "ctrl+tab+right",
+        "command": "-workbench.action.moveEditorToNextGroup"
+    },
+    { // 向左移動 (CTRL + TAB + 方向鍵)
+        "key": "ctrl+tab+left",
+        "command": "-workbench.action.moveEditorToPreviousGroup"
+    },
+    // 聊天視窗
+    { // 開啟 AI 聊天視窗 (CTRL + L)
+        "key": "ctrl+l",
+        "command": "workbench.action.chat.open"
+    },
+    { // 切換聊天面板可見性 (CTRL + SHIFT + L)
+        "key": "ctrl+shift+l",
+        "command": "workbench.action.togglePanelVisibility",
+        "when": "sideBarVisible && activeViewlet == 'workbench.view.chat'"
+    }
+]

@@ -1,0 +1,23 @@
+{ // VSCode 設定
+    "workbench.editor.enablePreview": false, // 禁用預覽
+    "workbench.editor.enablePreviewFromQuickOpen": false, // 禁用從快速打開預覽
+    "workbench.editor.openPositioning": "last", // 在最近的位置打開
+    "workbench.editor.openSideBySideDirection": "right", // 在右側打開
+    "workbench.editor.closeOnFileDelete": true, // 在刪除文件時關閉
+    "workbench.editor.revealIfOpen": true, // 在打開文件時顯示
+    "workbench.editor.focusRecentEditorAfterClose": false, // 在關閉文件後不聚焦最近的文件
+    "workbench.editor.highlightModifiedTabs": true, // 高亮修改的標籤
+    "workbench.editor.enableDragAndDrop": false, // 禁用拖放
+    "workbench.editor.splitInGroupLayout": "vertical", // 垂直分割
+    "workbench.editor.showTabs": "multiple", // 顯示多個標籤
+    "workbench.editor.limit.enabled": false, // 禁用限制
+    "workbench.editor.limit.value": 10, // 限制10個標籤
+    "workbench.editor.limit.perEditorGroup": true, // 限制每個編輯器組10個標籤
+    "workbench.panel.defaultLocation": "right", // 面板預設在右側（可設為 "right", "bottom", "left"）
+    "workbench.view.chat.location": "panel", // 聊天視窗位置：panel（面板）或 sideBar（側邊欄）
+    "workbench.sideBar.location": "left", // 側邊欄位置（檔案總管所在位置）
+    "explorer.autoReveal": true,
+    "search.useGlobalIgnoreFiles": true,
+    "search.useParentIgnoreFiles": true,
+    "git.ignoreLimitWarning": true // 顯示活動欄（側邊欄左側的圖標欄）
+}
