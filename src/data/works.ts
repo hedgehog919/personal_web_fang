@@ -99,7 +99,7 @@ export const works: WorkItem[] = [
         tech: ['活動相關資料處理、轉換及整合工作', '預防保護之護理措施', '管理活動行事曆與會議協調安排', '護理指導及諮詢'],
         challenges: [],
         screenshot: '',
-        screenshot_2: '/screenshots/activity-assistant_2.png'
+        screenshot_2: 'screenshots/activity-assistant_2.png'
     },
     {
         id: 'nurse',
@@ -148,7 +148,7 @@ export const works: WorkItem[] = [
             //     solution: '透過精心設計固定的提示詞模板 (Prompt Template)，可以更有效地引導和約束大型語言模型的輸出，能讓 AI 小天使的回覆風格、語氣和內容結構都標準化，從而提供更優質、更穩定的使用者體驗。'
             // }
         ],
-        screenshot: '/screenshots/activity-assistant.png',
+        screenshot: 'screenshots/activity-assistant.png',
         screenshot_2: ''
     }
 ];
