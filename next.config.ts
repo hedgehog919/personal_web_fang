@@ -1,16 +1,16 @@
 import type { NextConfig } from "next";
 
 const repo = "personal_web_fang";
-const isProd = process.env.NODE_ENV === "production";
+const isGhPages = process.env.DEPLOY_TARGET === "gh-pages";
 
 const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
   trailingSlash: true,
 
-  // GitHub Pages: https://hedgehog919.github.io/personal_web_fang/
-  basePath: isProd ? `/${repo}` : undefined,
-  assetPrefix: isProd ? `/${repo}/` : undefined,
+  // 只有部署到 GitHub Pages 才需要子路徑
+  basePath: isGhPages ? `/${repo}` : undefined,
+  assetPrefix: isGhPages ? `/${repo}/` : undefined,
 };
 
 export default nextConfig;
